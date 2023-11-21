@@ -40,4 +40,24 @@ public class MemberController {
         MemberDto memberDto = memberService.getMemberDetail(email);
         return ResponseEntity.ok(memberDto);
     }// 하나니까 리스트로 만들 필요 없음
+
+
+
+    // 페이지네이션 조회
+    @GetMapping("/list/page")
+    public ResponseEntity<List<MemberDto>> memberList(@RequestParam(defaultValue = "0")int page,
+                                                      @RequestParam(defaultValue = "10")int size){
+        List<MemberDto> list = memberService.getMemberList(page, size);
+        return ResponseEntity.ok(list);
+    }//memberList 이름 똑같이 줌오버로딩 됨
+
+    // 총 페이지 수 조회(총 몇페이지? 화면 구성 때문에)
+    @GetMapping("/list/page-cnt")
+    public ResponseEntity<Integer> memberPageCount(@RequestParam(defaultValue = "0")int page,
+                                                   @RequestParam(defaultValue = "5") int size) {
+        int pageCnt = memberService.getMemberPage(page, size);
+        return ResponseEntity.ok(pageCnt);
+    }
 }
+
+
