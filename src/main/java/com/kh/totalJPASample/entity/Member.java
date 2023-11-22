@@ -14,7 +14,9 @@ public class Member {
     @Id//주요키 역할하는 어노테이션
     @GeneratedValue(strategy = GenerationType.AUTO)
     // 주요 키 값 자동 생성 전략을 설정하는 애노테이션. AUTO는 스프링 부트에서 자동으로 생성한다. 이걸 더 많이 사용//Identity: db에 종속되는 애
+    @Column(name = "member_id")
     private Long id;//프라이머리 키이든 아니든 이건 무조건 넣는게 편하다. 고유값. 자동증가값으로
+    private String userId;
     @Column(nullable = false) // NULL 허용하지 않음
     private String name;
     private String password;
